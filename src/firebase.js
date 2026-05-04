@@ -7,12 +7,12 @@ import { getFirestore } from 'firebase/firestore';
 // Get these values from:
 //   Firebase Console → Your Project → Project Settings → Your Apps → SDK setup
 const firebaseConfig = {
-  apiKey: "AIzaSyAVq4QoMYi-bZ9HBU0iuGSfodX8CrQBoJ8",
-  authDomain: "wata-watcha.firebaseapp.com",
+  apiKey: "Your App ID",
+  authDomain: "Your App ID",
   projectId: "wata-watcha",
-  storageBucket: "wata-watcha.firebasestorage.app",
-  messagingSenderId: "255818666419",
-  appId: "1:255818666419:web:17af904ee60cb6c47dfbc6",
+  storageBucket: "Your App ID",
+  messagingSenderId: "Your App ID",
+  appId: "Your App ID",
 };
 // ───────────────────────────────────────────────────────────────────────────
 
