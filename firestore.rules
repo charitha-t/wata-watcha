@@ -1,0 +1,26 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Users can only read/write their own sub-documents
+    match /users/{uid}/{document=**} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+
+    // Global device registry:
+    // - Any authenticated user may read (to check if a serial is taken)
+    // - Authenticated users may create new entries only (no overwriting another user's device)
+    // - Updates and deletes are denied
+    match /registered_devices/{serialNumber} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null
+        && !exists(/databases/$(database)/documents/registered_devices/$(serialNumber));
+      allow update, delete: if false;
+    }
+
+    // Deny all other paths not matched above
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
